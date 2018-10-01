@@ -4,7 +4,6 @@ const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 const Portfolio = (props) => {
   const { projects } = props;
-
   const renderProjects = (projects) => {
     return projects.map((project, i) => {
       return (

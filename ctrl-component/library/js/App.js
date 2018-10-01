@@ -13,6 +13,7 @@ class App extends React.Component {
         BookApi.query(this.state.query).then(books => {
             this.setState({books})
         })
+        
     }
 
     filterBooks = (query) => {
@@ -23,6 +24,7 @@ class App extends React.Component {
     }
 
     render () {
+        // console.log(this.state.books)
         return (
             <div className="App">
                 <div className="search-books">

@@ -4,15 +4,47 @@ const VIEW_LIST = "view_list";
 const VIEW_MODULE = "view_module";
 
 class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      typeMarkup: VIEW_MODULE,
+      showProducts: true
+    }
+    this.changesType = this.changesType.bind(this);
+  }
+
+  changesType() {
+    const {typeMarkup, showProducts} = this.state;
+
+    if(typeMarkup === VIEW_MODULE) {
+      this.setState(state => {
+        typeMarkup: state.typeMarkup = VIEW_LIST
+      })
+      this.setState(state => {
+        showProducts: state.showProducts = false
+      })
+    }else {
+      this.setState(state => {
+        typeMarkup: state.typeMarkup = VIEW_MODULE
+      })
+      this.setState(state => {
+        showProducts: state.showProducts = true
+      })
+    }
+  }
+
   render() {
+    const {typeMarkup, showProducts} = this.state;
     return (
       <div>
         <div className="toolbar">
           <IconSwitch
-            icon={VIEW_MODULE}
-            onSwitch={() => console.log("сменился тип вывода")} />
+            icon={typeMarkup}
+            onSwitch={this.changesType} />
         </div>
-        {this.renderLayout(true)}
+        {this.renderLayout(showProducts)}
       </div>
     );
   }
