@@ -1,23 +1,29 @@
 'use strict';
 
 const DateInput = props => {
-  console.log({props}, '=DateInput')
   return (
     <div className="form-group">
       <label>{props.label}</label>
       <input type="text" className="form-control" name={props.name} onChange={props.onChange}
-             value={props.value} required={props.required} placeholder="YYYY-MM-DD"/>
+             value={props.value} required={props.required} placeholder={props.valueDefault}/>
     </div>
   )
 };
 
-DateInput.defaultProps = {
-  value: new Date().toLocaleString('ru')
+
+const nowDate = () => {
+  let now = new Date().toLocaleString('ru');
+  now = now.split(' ,.')[0].split(',')[0].split('.').reverse().join('.');
+  return now;
 }
 
-// RadioGroup.propTypes = {
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   label: PropTypes.string,
-//   name: PropTypes.string,
-// }
+DateInput.defaultProps = {
+  valueDefault: nowDate()
+}
+
+DateInput.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  name: PropTypes.string
+}

@@ -1,8 +1,6 @@
 'use strict';
 
 const TextInput = props => {
-  // console.log({props}, '=TextInput')
- 
   return (
     <div className="form-group">
       <label>{props.label}</label>
